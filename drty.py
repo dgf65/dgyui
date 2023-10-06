@@ -30,12 +30,8 @@ class CheckIn(object):
         }
         response = self.client.post(self.sign_url, headers=headers)
 
-        try:
-            response_data = response.json()
-            logging.info(self.username + "\t" + response_data["msg"])
-        except json.JSONDecodeError as e:
-            logging.error("JSON Parsing Error: " + str(e))
-            logging.error("Response Text: " + response.text)  # Print response text for debugging
+        logging.info(self.username +"\t"+ response.json()["msg"])
+
 
 if __name__ == "__main__":
     LOG_FORMAT = "%(asctime)s\t%(levelname)s\t%(message)s"
